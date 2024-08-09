@@ -24,7 +24,22 @@ export default function Home() {
     console.log(inventoryList)
   }
 
-  const removeItem = async (item => {
+  const addItem = async (item) => {
+    const docRef = doc(collection(firestore, 'inventory'), item)
+    const docSnap = await getDoc(docRef)
+
+    if(docSnap.exists()){
+      const {quantity} = docSnap.data()
+      await setDoc(docRef, {quantity: quantity + 1})
+    }
+    else{
+      await setDoc(docRef, {quantity: 1})
+    }
+
+    await updateInventory()
+  }
+
+  const removeItem = async (item) => {
     const docRef = doc(collection(firestore, 'inventory'), item)
     const docSnap = await getDoc(docRef)
 
@@ -34,10 +49,12 @@ export default function Home() {
         await deleteDoc(docRef)
       }
       else{
-        
+        await setDoc(docRef, {quantity: quantity - 1})
       }
     }
-  })
+
+    await updateInventory()
+  }
 
   useEffect(()=>{
     updateInventory()
