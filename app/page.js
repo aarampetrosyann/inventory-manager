@@ -2,10 +2,11 @@
 import Image from "next/image";
 import { useState, useEffect } from 'react'
 import { firestore } from '@/firebase'
-import { Box, Modal, Typography, Stack, TextField, Button} from '@mui/material'
+import { Box, Modal, Typography, Stack, TextField, Button, Link } from '@mui/material'
 import { collection, deleteDoc, doc, getDocs, query, getDoc, setDoc } from 'firebase/firestore'
 import { Icon } from '@iconify/react'
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+//import Link from "next/link";
 
 export default function Home() {
   const [inventory, setInventory] = useState([])
@@ -239,6 +240,67 @@ export default function Home() {
             ))}
           </Stack>
         </Box>
+      </Box>
+      <Box
+        component="footer"
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          bgcolor: '#0f172a',
+          color: '#ffffff',
+          padding: '10px',
+          position: 'fixed',
+          bottom: 0,
+          width: '100%',
+        }}
+      >
+        <Typography 
+          variant="body2" 
+          sx={{ 
+            mr: 2, 
+            width: "800px",
+            margin: '0 auto',
+            display: 'inline',
+          }}
+        >
+          Built by{' '} 
+          <Link 
+            href="https://linkedin.com/in/a-petrosyan"
+            target="_blank"
+            sx={{ 
+              color: '#ffffff',
+              textDecoration: 'underline',
+              textDecorationColor: 'inherit',
+              textUnderlineOffset: '4px',
+              fontWeight: 600,
+              //ml: 0.5,
+              '&:visited': {
+                color: 'inherit',
+              },
+            }}
+          >
+            aarampetrosyann
+          </Link>{'. '}
+          The source code is available on{' '}
+          <Link 
+            href="https://github.com/aarampetrosyann"
+            target="_blank"
+            sx={{ 
+              color: '#ffffff',
+              textDecoration: 'underline',
+              textDecorationColor: 'inherit',
+              textUnderlineOffset: '4px',
+              fontWeight: 600,
+              ml: 0.5,
+              '&:visited': {
+                color: 'inherit',
+              },
+            }}
+          >
+            GitHub
+          </Link>{'. '}
+        </Typography>
       </Box>
     </ThemeProvider>
   )
