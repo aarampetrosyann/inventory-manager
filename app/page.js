@@ -124,6 +124,7 @@ export default function Home() {
           gap={3}
           sx={{
             transform: 'translate(-50%, -50%)',
+            borderRadius: "10px",
           }}
           >
             <Typography variant="h6">Add Item</Typography>
@@ -140,7 +141,11 @@ export default function Home() {
                 variant="outlined" 
                 sx={{
                   height: "55px",
-                  width: "90px"
+                  width: "70px",
+                  bgcolor: "#0f172a",
+                    '&:hover': {
+                      backgroundColor: '#2563eb',
+                    },
                 }}
                 onClick={()=> {
                   addItem(itemName)
@@ -148,7 +153,7 @@ export default function Home() {
                   handleClose()
                 }}
               >
-                Add
+                <Icon icon="uil:book-medical" height="35px"/>
               </Button>
             </Stack>
           </Box>
